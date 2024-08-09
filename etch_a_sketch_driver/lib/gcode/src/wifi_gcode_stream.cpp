@@ -34,7 +34,7 @@ void GCode::WifiGCodeStream::init()
   ready_for_next_gcode = true;
   request_sent = false;
 
-  //   Serial.println("Wifi GCode Stream initialized");
+  Serial.println("Wifi GCode Stream initialized");
 }
 
 String GCode::WifiGCodeStream::read_line()
@@ -64,7 +64,7 @@ void GCode::WifiGCodeStream::loop()
         // Serial.println("Server ready, connecting to GCode server");
         while (!client.connect(server_ip.c_str(), socket_port))
         {
-          //   Serial.println("Waiting for GCode server...");
+          Serial.println("Waiting for GCode server...");
           delay(500);
         }
         //   Reset flag to fetch new GCode
@@ -175,7 +175,7 @@ bool GCode::WifiGCodeStream::server_ready()
   http.begin(address.c_str());
 
   int http_code = http.GET();
-  //   Serial.println("Server response: " + String(http_code));
+  Serial.println("Server response: " + String(http_code));
   if (http_code != 200)
   {
     // Serial.println("Server not ready");
